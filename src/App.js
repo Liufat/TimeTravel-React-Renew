@@ -32,6 +32,7 @@ import ItineraryDetail from './pages/product/itinerary/Itinerary-detail';
 import Orders from './pages/cart/order/Orders';
 import OrderSuccess from './pages/cart/OrderSuccess';
 import OrderFail from './pages/cart/OrderFail';
+import LinepayConfirm from './pages/cart/sub-pages/LinepayConfirm';
 //context
 import { FoodContextProvider } from './pages/product/food/FoodContext/FoodContext';
 import { HotelContextProvider } from './pages/product/stays/Context/HotelContext';
@@ -110,6 +111,10 @@ function App() {
                             <Route
                               path="cart/success"
                               element={<OrderSuccess />}
+                            />
+                            <Route
+                              path="linepayconfirm"
+                              element={<LinepayConfirm />}
                             />
                             <Route path="cart/fail" element={<OrderFail />} />
                             <Route path="cart" element={<Cart />} />
