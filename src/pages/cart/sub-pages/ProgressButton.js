@@ -1,5 +1,5 @@
 import React from 'react';
-import { MakeOrder, LINE_PAY_API, GREEN_PAY_API } from '../../../config';
+import { MakeOrder, LINE_PAY_API, ECPAY_API } from '../../../config';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { usePaymentInfo } from '../context/usePaymentInfo';
@@ -36,12 +36,12 @@ function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
         confirmButtonColor: '#59d8a1',
       });
       if (payMethod === 'LinePay') {
-        await pay(uuid);
+        await Linepay(uuid);
         window.location = payUrl;
       }
 
       if (payMethod === 'Credit') {
-        await greenPay(uuid);
+        await EcPay(uuid);
       }
     } else {
       Swal.fire({
@@ -52,71 +52,26 @@ function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
       });
     }
   };
-  const mySubmit2 = async (e) => {
-    let greenHtml;
 
-    // if (data.success) {
-    //   Swal.fire({
-    //     icon: 'success',
-    //     title: '已成功建立訂單，即將跳往結帳頁面',
-    //     confirmButtonText: '確認',
-    //     confirmButtonColor: '#59d8a1',
-    //   });
-    //   localStorage.removeItem('foodcart');
-    //   localStorage.removeItem('ticketcart');
-    //   localStorage.removeItem('hotelcart');
-    //   window.location = 'http://localhost:3000/cart/fail';
-    // } else {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: '訂單成立失敗！',
-    //   });
-    // }
+  // const tryMakingOrder = async () => {
+  //   const { data } = await axios.post(MakeOrder, formData);
+  //   console.log(data);
+  //   //   const recentPaymentId = 272023102500099;
+  //   //   const lastNum = (
+  //   //     Number(recentPaymentId.toString().slice(-5)) + 1
+  //   //   ).toString();
 
-    // const response = (await axios.get(GREEN_PAY_API(uuid))).data.htm;
-    // greenHtml = response;
+  //   //   console.log(lastNum.padStart(5, '0'));
+  // };
 
-    // console.log(response);
-
-    // if (greenHtml) {
-    //   Swal.fire({
-    //     icon: 'success',
-    //     title: '已成功建立訂單，即將跳往結帳頁面',
-    //     confirmButtonText: '確認',
-    //     confirmButtonColor: '#59d8a1',
-    //   });
-    //   // localStorage.removeItem('TimeTravelCart');
-    //   document.open();
-    //   document.write(greenHtml);
-    //   document.close();
-    // } else {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: '訂單成立失敗！',
-    //   });
-    //   window.location = 'http://localhost:3000/cart/fail';
-    // }
-  };
-
-  const tryMakingOrder = async () => {
-    const { data } = await axios.post(MakeOrder, formData);
-    console.log(data);
-    //   const recentPaymentId = 272023102500099;
-    //   const lastNum = (
-    //     Number(recentPaymentId.toString().slice(-5)) + 1
-    //   ).toString();
-
-    //   console.log(lastNum.padStart(5, '0'));
-  };
-  // const uuid = 1670387472990;
-  async function pay(uuid) {
+  async function Linepay(uuid) {
     const response = await axios.get(LINE_PAY_API(uuid));
     const url = response.data.payUrl;
     payUrl = url;
   }
 
-  async function greenPay(uuid) {
-    const response = (await axios.get(GREEN_PAY_API(uuid))).data.htm;
+  async function EcPay(uuid) {
+    const response = (await axios.get(ECPAY_API(uuid))).data.htm;
     if (response) {
       document.open();
       document.write(response);
@@ -145,7 +100,7 @@ function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
         </button>
       ) : (
         <>
-          <button
+          {/* <button
             type="submit"
             className="btn btn-primary"
             onClick={() => {
@@ -153,7 +108,7 @@ function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
             }}
           >
             模擬付款失敗
-          </button>
+          </button> */}
           <button
             type="submit"
             className="btn btn-primary"

@@ -61,15 +61,15 @@ export const LINE_PAY_API = function (paymentId) {
 export const LINE_PAY_CONFIRM_API = `${MY_HOST}/pay/api/paycheck`;
 
 //獲取指定訂單編號的資料-綠界
-export const GREEN_PAY_API = function (paymentId) {
-  return `${MY_HOST}/pay/api/paygreen/${paymentId}`;
+export const ECPAY_API = function (paymentId) {
+  return `${MY_HOST}/pay/api/ecpay/${paymentId}`;
 };
 
 //更改訂單付款狀態
 export const CHANGE_PAY_API = `${MY_HOST}/pay/api/change-pay`;
 
 // 收取綠界api回報的付款狀態
-export const CHANGE_GREENPAY_API = `${MY_HOST}/pay/api/green-pay-change-state`;
+export const CHANGE_ECPAY_API = `${MY_HOST}/pay/api/ecpay-change-state`;
 
 //輸入評論路徑
 export const SUBMIT_COMMENT_API = `${MY_HOST}/comment/api/submit-comment-api`;
