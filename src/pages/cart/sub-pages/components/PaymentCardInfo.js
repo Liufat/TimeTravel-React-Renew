@@ -1,25 +1,22 @@
 import React from 'react';
+import { usePaymentInfo } from '../../context/usePaymentInfo';
 
-function PaymentCardInfo({
-  paymentRepresent,
-  setPaymentRepresent,
-  paymentMobile,
-  setPaymentMobile,
-  paymentEmail,
-  setPaymentEmail,
-  paymentId,
-  setPaymentId,
-}) {
+function PaymentCardInfo() {
+  const { paymentInformation, changePaymentInformation } = usePaymentInfo();
+  const { paymentRepresent, paymentEmail, paymentMobile, paymentId } =
+    paymentInformation;
   return (
     <>
       <div className="d-flex pb-5">
         <div className="me-3">
           <p
             onClick={() => {
-              setPaymentRepresent('谷鄉元昭');
-              setPaymentMobile('0966567654');
-              setPaymentEmail('bestgirlyagoo@gmail.com');
-              setPaymentId('A129715143');
+              changePaymentInformation({
+                paymentRepresent: '谷鄉元昭',
+                paymentMobile: '0966567654',
+                paymentEmail: 'bestgirlyagoo@gmail.com',
+                paymentId: 'A129715143',
+              });
             }}
           >
             {'訂單聯絡人'}
@@ -30,8 +27,8 @@ function PaymentCardInfo({
             placeholder={'請輸入姓名'}
             value={paymentRepresent}
             onChange={(e) => {
-              const payname = e.target.value;
-              setPaymentRepresent(payname);
+              const payload = e.target.value;
+              changePaymentInformation({ paymentRepresent: payload });
             }}
             style={{ width: '300px' }}
           />
@@ -45,8 +42,8 @@ function PaymentCardInfo({
             style={{ width: '300px' }}
             value={paymentMobile}
             onChange={(e) => {
-              const v = e.target.value;
-              setPaymentMobile(v);
+              const payload = e.target.value;
+              changePaymentInformation({ paymentMoble: payload });
             }}
           />
         </div>
@@ -61,8 +58,8 @@ function PaymentCardInfo({
             style={{ width: '300px' }}
             value={paymentEmail}
             onChange={(e) => {
-              const v = e.target.value;
-              setPaymentEmail(v);
+              const payload = e.target.value;
+              changePaymentInformation({ paymentEmail: payload });
             }}
           />
         </div>
@@ -75,8 +72,8 @@ function PaymentCardInfo({
             style={{ width: '300px' }}
             value={paymentId}
             onChange={(e) => {
-              const v = e.target.value;
-              setPaymentId(v);
+              const payload = e.target.value;
+              changePaymentInformation({ paymentId: payload });
             }}
           />
         </div>

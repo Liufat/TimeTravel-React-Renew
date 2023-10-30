@@ -62,7 +62,7 @@ function NavBar() {
                 </NavLink>
               </li>
             </ul>
-    
+
             <SearchBar searchWord={searchWord} setSearchWord={setSearchWord} />
 
             <div>
@@ -192,9 +192,7 @@ function NavBar() {
                 </>
               )}
             </div>
-            <div className="cart icon">
-              <CartIcon />
-            </div>
+            <div className="cart icon">{<CartIcon />}</div>
           </div>
         </div>
       </nav>

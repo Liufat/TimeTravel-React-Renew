@@ -1,34 +1,65 @@
 import React from 'react';
 import PriceDetailCard from './PriceDetailCard';
 import ProgressButton from './ProgressButton';
-import { useHotelCart, useFoodCart, useTicketCart } from './../utils/useCart';
+import { useCart } from './../utils/useCart';
 import './../styles/PriceDetail.scss';
+import makingPriceDetail from '../hooks/makingPriceDetail';
+
 function PriceDetail({ prev, next, step, maxSteps }) {
-  const hotel = useHotelCart();
-  const food = useFoodCart();
-  const ticket = useTicketCart();
+  const { cart } = useCart();
+
+  // console.log(cart);
+
+  // console.log(cart);
+  // const makingPriceDetail = (type) => {
+  //   const priceItems = cart.items.filter((item) => item.type === type);
+
+  //   const itemTotalPrice =
+  //     // 如果是住宿的價錢，還要考慮到天數
+  //     type !== 'hotel'
+  //       ? priceItems
+  //           .map((priceItem) => priceItem.price * priceItem.quantity)
+  //           .reduce((acc, cur) => acc + cur, 0)
+  //       : priceItems
+  //           .map(
+  //             (priceItem) =>
+  //               (priceItem.price *
+  //                 priceItem.quantity *
+  //                 (+new Date(priceItem.checkout) -
+  //                   +new Date(priceItem.checkin))) /
+  //               86400000
+  //           )
+  //           .reduce((acc, cur) => acc + cur, 0);
+
+  //   return { items: priceItems, totalPrice: itemTotalPrice };
+  // };
+
+  const hotel = makingPriceDetail(cart, 'hotel');
+  const food = makingPriceDetail(cart, 'food');
+  const ticket = makingPriceDetail(cart, 'ticket');
+
   // console.log(hotel);
   return (
     <div className="price-detail-wrap mb-5">
       <PriceDetailCard
         title={'住宿'}
         items={hotel.items}
-        total={hotel.cart.hotelTotal}
+        total={hotel.totalPrice}
       />
       <PriceDetailCard
         title={'美食'}
         items={food.items}
-        total={food.cart.cartTotal}
+        total={food.totalPrice}
       />
       <PriceDetailCard
         title={'票券'}
         items={ticket.items}
-        total={ticket.cart.cartTotal}
+        total={ticket.totalPrice}
       />
       <div className="d-flex justify-content-evenly">
         <h1 className="total">總計</h1>
         <h1 className="total">
-          {hotel.cart.hotelTotal + food.cart.cartTotal + ticket.cart.cartTotal}
+          {hotel.totalPrice + food.totalPrice + ticket.totalPrice}
         </h1>
       </div>
       <div>

@@ -2,31 +2,20 @@ import React from 'react';
 import CardHeader from './components/CardHeader';
 import HotelCard from './components/HotelCard';
 import PriceDetail from './PriceDetail';
-import { useHotelCart } from '../utils/useCart';
-function CartHotel({
-  prev,
-  next,
-  step,
-  maxSteps,
-  hotelRepresent,
-  setHotelRepresent,
-  hotelMobile,
-  setHotelMobile,
-}) {
-  const { items } = useHotelCart();
-  if (items.length !== 0) {
+import { useCart } from '../utils/useCart';
+import itemsType from '../hooks/itemsType';
+function CartHotel({ prev, next, step, maxSteps }) {
+  const { items } = useCart().cart;
+  const hotelItems = itemsType(items, 'hotel');
+
+  if (hotelItems.length !== 0) {
     return (
       <div className="container">
         <div className="row">
           <CardHeader text={'訂房資訊'} />
           <div className="d-flex justify-content-between">
             <div className="col-lg-7">
-              <HotelCard
-                hotelRepresent={hotelRepresent}
-                setHotelRepresent={setHotelRepresent}
-                hotelMobile={hotelMobile}
-                setHotelMobile={setHotelMobile}
-              />
+              <HotelCard />
             </div>
             <div className="col-lg-4">
               <PriceDetail

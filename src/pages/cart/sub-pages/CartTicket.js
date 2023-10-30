@@ -2,17 +2,19 @@ import React from 'react';
 import CardHeader from './components/CardHeader';
 import TicketCard from './components/TicketCard';
 import PriceDetail from './PriceDetail';
-import { useTicketCart } from '../utils/useCart';
+import { useCart } from '../utils/useCart';
+import itemsType from '../hooks/itemsType';
 function CartTicket({ prev, next, step, maxSteps }) {
-  const { items } = useTicketCart();
-  if (items.length !== 0) {
+  const { items } = useCart().cart;
+  const ticketItems = itemsType(items, 'ticket');
+  if (ticketItems.length !== 0) {
     return (
       <div className="container">
         <div className="row">
           <CardHeader text={'票券資訊'} />
           <div className="d-flex justify-content-between">
             <div className="col-lg-7">
-              <TicketCard />
+              <TicketCard items={ticketItems} />
             </div>
             <div className="col-lg-4">
               <PriceDetail

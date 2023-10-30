@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useCart } from '../../utils/useCart';
 
-function DateInput({ text, date, id, updateDate, dateProps, min, max }) {
+function DateInput({ text, date, targetItem, dateProps, min, max }) {
   const [newDate, setNewDate] = useState(date);
+  const { updateItem } = useCart();
+
   return (
     <div className="me-3">
       <p>{text}</p>
@@ -12,13 +15,10 @@ function DateInput({ text, date, id, updateDate, dateProps, min, max }) {
         type={'date'}
         value={newDate}
         onChange={(e) => {
-          // console.log(e.target.value);
-
           const newDate = e.target.value;
           setNewDate(newDate);
-          const item = { [dateProps]: newDate };
-          // console.log(item);
-          updateDate(id, item);
+          const changingTarget = { [dateProps]: newDate };
+          updateItem({ targetItem, changingTarget });
         }}
       ></input>
     </div>

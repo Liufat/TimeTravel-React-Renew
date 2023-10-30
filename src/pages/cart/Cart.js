@@ -28,12 +28,7 @@ function Cart() {
   const BlockComponent = components[step - 1];
 
   //結帳用的state
-  const [hotelRepresent, setHotelRepresent] = useState('');
-  const [hotelMobile, setHotelMobile] = useState('');
-  const [paymentRepresent, setPaymentRepresent] = useState('');
-  const [paymentMobile, setPaymentMobile] = useState('');
-  const [paymentEmail, setPaymentEmail] = useState('');
-  const [paymentId, setPaymentId] = useState('');
+
   return (
     <>
       <div className="cart-total-wrap">
@@ -46,18 +41,6 @@ function Cart() {
             next={next}
             step={step}
             maxSteps={maxSteps}
-            hotelRepresent={hotelRepresent}
-            setHotelRepresent={setHotelRepresent}
-            hotelMobile={hotelMobile}
-            setHotelMobile={setHotelMobile}
-            paymentRepresent={paymentRepresent}
-            setPaymentRepresent={setPaymentRepresent}
-            paymentMobile={paymentMobile}
-            setPaymentMobile={setPaymentMobile}
-            paymentEmail={paymentEmail}
-            setPaymentEmail={setPaymentEmail}
-            paymentId={paymentId}
-            setPaymentId={setPaymentId}
           />
         </div>
         <Footer />

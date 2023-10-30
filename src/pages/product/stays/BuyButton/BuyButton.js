@@ -1,10 +1,10 @@
 import React from 'react';
 import './BuyButton.scss';
 import { useHotelContext } from '../Context/HotelContext';
-import { useHotelCart } from './../../../cart/utils/useCart';
+import { useCart } from './../../../cart/utils/useCart';
 import Swal from 'sweetalert2';
 function BuyButton() {
-  const { addItem } = useHotelCart();
+  const { addItem } = useCart();
   const {
     roomCounts,
     hotelRoomPrice,
@@ -14,6 +14,7 @@ function BuyButton() {
     roomsChooseName,
   } = useHotelContext();
   const items = {
+    type: 'hotel',
     id: hotelListData.sid,
     name: hotelListData.product_name,
     price: hotelRoomPrice,
@@ -21,7 +22,7 @@ function BuyButton() {
     checkout: pickDate.endTime,
     quantity: roomCounts,
     rate: allStar,
-    type: roomsChooseName,
+    chozenType: roomsChooseName,
   };
   return (
     <>

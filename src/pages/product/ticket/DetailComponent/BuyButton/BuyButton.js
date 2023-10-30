@@ -2,9 +2,9 @@ import React from 'react';
 import './BuyButton.scss';
 import { useTicketContext } from '../../Context/TicketContext';
 import Swal from 'sweetalert2';
-import { useTicketCart } from '../../../../cart/utils/useCart';
+import { useCart } from '../../../../cart/utils/useCart';
 function BuyButton() {
-  const { addItem } = useTicketCart();
+  const { addItem } = useCart();
   const {
     ticketCounts,
     ticketTypePrice,
@@ -14,11 +14,12 @@ function BuyButton() {
     allStar,
   } = useTicketContext();
   const ticketOrder = {
+    type: 'ticket',
     id: ticketListData.sid,
     name: ticketListData.product_name,
-    type: typesChooseName,
+    chozenType: typesChooseName,
     quantity: ticketCounts,
-    date: pickDate.startTime,
+    startDate: pickDate.startTime,
     price: ticketTypePrice,
     rate: allStar,
     img: 'http://localhost:3001/uploads/ticket/14-1.jpg',

@@ -2,10 +2,10 @@ import React from 'react';
 import CardTitle from './CardTitle';
 import CardBodyTop from './CardBodyTop';
 import CountButton from './CountButton';
-import { useFoodCart } from '../../utils/useCart';
+import { useCart } from '../../utils/useCart';
 
-function FoodCard() {
-  const { items, plusOne, minusOne, removeItem } = useFoodCart();
+function FoodCard({ items }) {
+  const { plusOne, minusOne, removeItem } = useCart();
   return (
     <>
       {items.map((v, i) => {
@@ -15,7 +15,7 @@ function FoodCard() {
               <CardTitle
                 text={'美食購買資訊'}
                 id={v.id}
-                deleteFun={() => removeItem(v.id)}
+                deleteFun={() => removeItem(v)}
               />
               <div className="d-flex justify-content-between">
                 <CardBodyTop productName={v.name} img={v.img} rate={v.rate} />
@@ -23,10 +23,10 @@ function FoodCard() {
                   quantity={v.quantity}
                   id={v.id}
                   plusOne={() => {
-                    plusOne(v.id);
+                    plusOne(v);
                   }}
                   minusOne={() => {
-                    minusOne(v.id);
+                    minusOne(v);
                   }}
                 />
               </div>

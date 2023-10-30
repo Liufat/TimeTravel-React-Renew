@@ -3,17 +3,22 @@ import CartImg from '../icon/cart.svg';
 import { NavLink } from 'react-router-dom';
 import AuthContext from '../pages/member/context/AuthContext';
 import Swal from 'sweetalert2';
-import {
-  useHotelCart,
-  useTicketCart,
-  useFoodCart,
-} from '../pages/cart/utils/useCart';
+// import {
+//   useHotelCart,
+//   useTicketCart,
+//   useFoodCart,
+// } from '../pages/cart/utils/useCart';
+import { useCart } from '../pages/cart/utils/useCart';
+
 function CartIcon() {
   const { myAuth } = useContext(AuthContext);
-  const foodcart = useFoodCart().cart;
-  const hotelcart = useHotelCart().cart;
-  const ticketcart = useTicketCart().cart;
+  // const foodcart = useFoodCart().cart;
+  // const hotelcart = useHotelCart().cart;
+  // const ticketcart = useTicketCart().cart;
   // console.log(myAuth);
+
+  const cartTotalItems = useCart().cart.totalItems;
+
   const myLogIn = () => {
     if (localStorage.getItem('auth') === null) {
       return Swal.fire({
@@ -36,22 +41,14 @@ function CartIcon() {
         <NavLink className="nav-link" to="/cart">
           <img src={CartImg} alt="" />
           <div className="cart-count">
-            <span>
-              {foodcart.totalItems +
-                hotelcart.totalItems +
-                ticketcart.totalItems}
-            </span>
+            <span>{cartTotalItems}</span>
           </div>
         </NavLink>
       ) : (
         <div className="nav-link" role="button" onClick={myLogIn}>
           <img src={CartImg} alt="" />
           <div className="cart-count">
-            <span>
-              {foodcart.totalItems +
-                hotelcart.totalItems +
-                ticketcart.totalItems}
-            </span>
+            <span>{cartTotalItems}</span>
           </div>
         </div>
       )}

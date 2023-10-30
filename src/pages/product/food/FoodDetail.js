@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useFoodContext } from './FoodContext/FoodContext.js';
 import { FOOD_ITEM } from '../../../config.js';
 import { FOOD_COMMENT } from '../../../config.js';
-import { useFoodCart } from '../../cart/utils/useCart';
+import { useCart } from '../../cart/utils/useCart';
 import FoodMap from './FoodMap';
 import Comment from './Comment';
 import CommentSelector from './CommentSelector';
@@ -52,6 +52,7 @@ function FoodDetail() {
   } = useFoodContext();
   // const dataFrom = window.location.pathname.split('/food/detail/')[1];
   const foodObj = {
+    type: 'food',
     id: foodData.sid,
     name: foodData.product_name,
     quantity: count,
@@ -109,7 +110,7 @@ function FoodDetail() {
     const response = await axios.get(FOOD_COMMENT);
     setCommentData(response.data);
   }
-  console.log(commentData);
+  // console.log(commentData);
 
   const [userData, setUserData] = useState([]);
 
@@ -251,7 +252,8 @@ function FoodDetail() {
     getData();
   }, []);
 
-  const { addItem } = useFoodCart();
+  const { addItem } = useCart();
+
   return (
     <>
       <NavBar />
@@ -435,6 +437,7 @@ function FoodDetail() {
               type="button"
               className="BottomBar_Buy_Right "
               style={{ backgroundColor: '#63D2FF', marginRight: '30px' }}
+              // TODO:修改購物車驗證
               onClick={() => {
                 Swal.fire({
                   icon: 'success',

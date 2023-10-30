@@ -28,8 +28,6 @@ export const FOOD_ORDER_DETAIL = `${MY_HOST}/orders/api/list/foodlist/`;
 
 export const PRODUCT_LIST = `${MY_HOST}/productAll/api`;
 
-
-
 export const ADD_COLLECT = `${MY_HOST}/productAll/AddCollect`;
 export const DEL_COLLECT = `${MY_HOST}/productAll/DelCollect`;
 export const GET_COLLECT = `${MY_HOST}/productAll/checkCollect/:member`;
@@ -56,18 +54,22 @@ export const ORDER_DETAILS_TICKET_API = function (uuid) {
 
 //結帳流程
 //獲取指定訂單編號的資料-LINE PAY
-export const LINE_PAY_API = function (uuid) {
-  return `${MY_HOST}/pay/api/paylist/${uuid}`;
+export const LINE_PAY_API = function (paymentId) {
+  return `${MY_HOST}/pay/api/paylist/${paymentId}`;
 };
 //確認訂單是否結帳成功
 export const LINE_PAY_CONFIRM_API = `${MY_HOST}/pay/api/paycheck`;
 
 //獲取指定訂單編號的資料-綠界
-export const GREEN_PAY_API = function (uuid) {
-  return `${MY_HOST}/pay/api/paygreen/${uuid}`;
+export const GREEN_PAY_API = function (paymentId) {
+  return `${MY_HOST}/pay/api/paygreen/${paymentId}`;
 };
+
 //更改訂單付款狀態
 export const CHANGE_PAY_API = `${MY_HOST}/pay/api/change-pay`;
+
+// 收取綠界api回報的付款狀態
+export const CHANGE_GREENPAY_API = `${MY_HOST}/pay/api/green-pay-change-state`;
 
 //輸入評論路徑
 export const SUBMIT_COMMENT_API = `${MY_HOST}/comment/api/submit-comment-api`;

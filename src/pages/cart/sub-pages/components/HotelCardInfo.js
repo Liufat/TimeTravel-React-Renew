@@ -1,11 +1,10 @@
 import React from 'react';
+import { usePaymentInfo } from '../../context/usePaymentInfo';
 
-function HotelCardInfo({
-  hotelRepresent,
-  setHotelRepresent,
-  hotelMobile,
-  setHotelMobile,
-}) {
+function HotelCardInfo({}) {
+  const { hotelRepresent, hotelMobile } = usePaymentInfo().hotelInformation;
+
+  const { changeHotelInformation } = usePaymentInfo();
   return (
     <div className="card-wrap">
       <div className="card-body">
@@ -14,8 +13,7 @@ function HotelCardInfo({
           <div className="me-3">
             <p
               onClick={() => {
-                setHotelRepresent('生日哥');
-                setHotelMobile('0922334567');
+                changeHotelInformation({ hotelRepresent: '生日哥' });
               }}
             >
               入住代表人
@@ -27,8 +25,8 @@ function HotelCardInfo({
               value={hotelRepresent}
               onChange={(e) => {
                 const name = e.target.value;
-                setHotelRepresent(name);
-                // console.log(name);
+                changeHotelInformation({ hotelRepresent: name });
+                // console.log(hotelInformation);
               }}
             />
           </div>
@@ -47,7 +45,7 @@ function HotelCardInfo({
               value={hotelMobile}
               onChange={(e) => {
                 const mobile = e.target.value;
-                setHotelMobile(mobile);
+                changeHotelInformation({ hotelMobile: mobile });
                 // console.log(mobile);
               }}
             />

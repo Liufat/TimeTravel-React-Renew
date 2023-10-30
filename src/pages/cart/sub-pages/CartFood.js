@@ -2,17 +2,21 @@ import React from 'react';
 import CardHeader from './components/CardHeader';
 import FoodCard from './components/FoodCard';
 import PriceDetail from './PriceDetail';
-import { useFoodCart } from '../utils/useCart';
+import { useCart } from '../utils/useCart';
+import itemsType from '../hooks/itemsType';
 function CartFood({ prev, next, step, maxSteps }) {
-  const { items } = useFoodCart();
-  if (items.length !== 0) {
+  const { items } = useCart().cart;
+
+  const foodItems = itemsType(items, 'food');
+
+  if (foodItems.length !== 0) {
     return (
       <div className="container">
         <div className="row">
           <CardHeader text={'美食資訊'} />
           <div className="d-flex justify-content-between">
             <div className="col-lg-7">
-              <FoodCard />
+              <FoodCard items={foodItems} />
             </div>
             <div className="col-lg-4">
               <PriceDetail

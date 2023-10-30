@@ -33,7 +33,7 @@ function PriceDetailCard({ title, items, total }) {
                     )}
                   </div>
                   <div className="btn-wrap">
-                    <StateButton text={v.type} />
+                    <StateButton text={v.chozenType} />
                   </div>
                 </div>
               );

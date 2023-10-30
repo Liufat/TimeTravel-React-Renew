@@ -2,46 +2,41 @@ import React from 'react';
 import CardTitle from './CardTitle';
 import CardBodyTop from './CardBodyTop';
 import StateButton from './StateButton';
-import { useHotelCart } from '../../utils/useCart';
+import { useCart } from '../../utils/useCart';
 import CountButton from './CountButton';
 import DateInput from './DateInput';
-function HotelCardDetail({
-  name,
-  id,
-  type,
-  quantity,
-  rate,
-  checkin,
-  checkout,
-  img,
-}) {
+
+function HotelCardDetail({ hotelItem }) {
+  const { name, rate, img, id, chozenType, quantity, checkin, checkout } =
+    hotelItem;
+
   let dateLong = (+new Date(checkout) - +new Date(checkin)) / 86400000;
-  const { removeItem, plusOne, minusOne, updateDate } = useHotelCart();
+  const { removeItem, plusOne, minusOne } = useCart();
+
   return (
     <div className="pb-5">
       <CardTitle
         text="訂房預定資訊"
         deleteFun={() => {
-          removeItem(id);
+          removeItem(hotelItem);
         }}
       />
+
       <CardBodyTop productName={name} rate={rate} img={img} />
-      <StateButton text={type} />
+      <StateButton text={chozenType} />
       <div className="d-flex">
         <DateInput
           text={'入住日期'}
           date={checkin}
-          id={id}
+          targetItem={hotelItem}
           max={checkout}
-          updateDate={updateDate}
           dateProps={'checkin'}
         />
         <DateInput
           text={'退房日期'}
           date={checkout}
-          id={id}
+          targetItem={hotelItem}
           min={checkin}
-          updateDate={updateDate}
           dateProps={'checkout'}
         />
         <div className="day-count">
@@ -53,10 +48,10 @@ function HotelCardDetail({
           quantity={quantity}
           id={id}
           plusOne={() => {
-            plusOne(id);
+            plusOne(hotelItem);
           }}
           minusOne={() => {
-            minusOne(id);
+            minusOne(hotelItem);
           }}
         />
       </div>

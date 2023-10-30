@@ -1,53 +1,58 @@
 import PaymentCard from './components/PaymentCard';
 import ProgressButton from './ProgressButton';
-import { useFoodCart, useHotelCart, useTicketCart } from '../utils/useCart';
+import { useCart } from '../utils/useCart';
 import { useState } from 'react';
-function CartPayment({
-  prev,
-  next,
-  step,
-  maxSteps,
-  hotelRepresent,
-  hotelMobile,
-  paymentRepresent,
-  setPaymentRepresent,
-  paymentMobile,
-  setPaymentMobile,
-  paymentEmail,
-  setPaymentEmail,
-  paymentId,
-  setPaymentId,
-}) {
+import itemsType from '../hooks/itemsType';
+import { usePaymentInfo } from '../context/usePaymentInfo';
+import makingPriceDetail from '../hooks/makingPriceDetail';
+function CartPayment({ prev, next, step, maxSteps, paymentId, setPaymentId }) {
   const [payMethod, setPayMethod] = useState('');
-  //取的存在localstorga的會員sid
+  //取得存在localstorga的會員sid
   const member = JSON.parse(localStorage.getItem('auth'));
   // console.log(member.sid);
   //用毫秒當作訂單的uuid
-  const uuid = +new Date();
 
-  //計算訂單的總價格
-  const totalPrice =
-    useHotelCart().cart.cartTotal +
-    useFoodCart().cart.cartTotal +
-    useTicketCart().cart.cartTotal;
+  // 把創造訂單uuid改去後端執行
+  // const uuid = +new Date();
+
+  //取出usePaymentInfor裡的payment資料
+  const { hotelRepresent, hotelMobile } = usePaymentInfo().hotelInformation;
+  // console.log(hotelRepresent, hotelMobile);
 
   //抓出localstorage的資料
-  const foodItems = useFoodCart().items;
-  const hotelItems = useHotelCart().items;
-  const ticketItems = useTicketCart().items;
+  const cart = useCart().cart;
+  const { items } = cart;
+
+  const foodItems = itemsType(items, 'food');
+  const hotelItems = itemsType(items, 'hotel');
+  const ticketItems = itemsType(items, 'ticket');
 
   const newFood = foodItems.map((v, i) => {
-    return { ...v, uuid };
+    // return { ...v, uuid };
+    return { ...v };
   });
   const newHotel = hotelItems.map((v, i) => {
-    return { ...v, uuid, repName: hotelRepresent, repMobile: hotelMobile };
+    // return { ...v, uuid, repName: hotelRepresent, repMobile: hotelMobile };
+    return { ...v, repName: hotelRepresent, repMobile: hotelMobile };
   });
   const newTicket = ticketItems.map((v, i) => {
-    return { ...v, uuid };
+    // return { ...v, uuid };
+    return { ...v };
   });
+
+  //計算訂單的總價格
+  // const totalPrice = 1000;
+  const totalPrice =
+    makingPriceDetail(cart, 'hotel').totalPrice +
+    makingPriceDetail(cart, 'food').totalPrice +
+    makingPriceDetail(cart, 'ticket').totalPrice;
+  // useHotelCart().cart.cartTotal +
+  // useFoodCart().cart.cartTotal +
+  // useTicketCart().cart.cartTotal;
+
   const order = {
     member_sid: member.sid,
-    uuid: uuid,
+    // uuid: uuid,
     orders_total_price: totalPrice,
   };
   // setOrderId(order.uuid);
@@ -68,12 +73,6 @@ function CartPayment({
     <div className="container">
       <div className="row">
         <PaymentCard
-          paymentRepresent={paymentRepresent}
-          setPaymentRepresent={setPaymentRepresent}
-          paymentMobile={paymentMobile}
-          setPaymentMobile={setPaymentMobile}
-          paymentEmail={paymentEmail}
-          setPaymentEmail={setPaymentEmail}
           paymentId={paymentId}
           payMethod={payMethod}
           setPaymentId={setPaymentId}
@@ -95,15 +94,9 @@ function CartPayment({
           next={next}
           step={step}
           maxSteps={maxSteps}
-          paymentRepresent={paymentRepresent}
-          paymentMobile={paymentMobile}
-          paymentEmail={paymentEmail}
-          paymentId={paymentId}
-          hotelRepresent={hotelRepresent}
-          hotelMobile={hotelMobile}
           formData={formData}
           payMethod={payMethod}
-          uuid={uuid}
+          // uuid={uuid}
         />
       </div>
     </div>

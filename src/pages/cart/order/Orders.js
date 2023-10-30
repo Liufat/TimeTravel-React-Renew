@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import NavBar from '../../../layout/NavBar';
 import Footer from '../../../layout/Footer';
 import SideBar from '../../../layout/SideBar';
@@ -11,13 +11,16 @@ function Orders() {
   const member_sid = JSON.parse(localStorage.getItem('auth')).sid;
   const [ordersData, setOrdersData] = useState([]);
 
-  async function getOrders() {
-    const response = await axios.get(ORDERS_API(member_sid));
-    setOrdersData(response.data);
-  }
+  const stableGetOrders = useCallback(
+    async function getOrders() {
+      const response = await axios.get(ORDERS_API(member_sid));
+      setOrdersData(response.data);
+    },
+    [member_sid]
+  );
   useEffect(() => {
-    getOrders();
-  }, [location]);
+    stableGetOrders();
+  }, [location, stableGetOrders]);
   // console.log(ordersData);
   return (
     <div className="orders-total-wrap">

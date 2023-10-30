@@ -5,21 +5,22 @@ import Minus_icon_active from '../../../icon/minusActive.svg';
 import Add_icon from '../../../icon/add.svg';
 import './style/FoodBookingBar.scss';
 import { useFoodContext } from './FoodContext/FoodContext';
-import { useFoodCart } from '../../cart/utils/useCart';
+import { useCart } from '../../cart/utils/useCart';
 function FoodBookingBar({ foodData }) {
   console.log({ foodData });
   const { slideOut, count, setCount, totalPrice, setTotalPrice } =
     useFoodContext();
   const foodObj = {
+    type: 'food',
     id: foodData.sid,
-    name: foodData.product_name,
+    // name: foodData.product_name,
     quantity: count,
-    price: foodData.p_selling_price,
-    img: 'http://localhost:3001/uploads/F116-1.jpg',
-    rate: 4.3,
+    // price: foodData.p_selling_price,
+    // img: 'http://localhost:3001/uploads/F116-1.jpg',
+    // rate: 4.3,
   };
   useEffect(() => {}, [slideOut, totalPrice]);
-  const { addItem } = useFoodCart();
+  const { addItem } = useCart();
   return (
     <div className="BookingBar d-flex">
       <div className={slideOut ? 'ShowBookingBar' : ''}>

@@ -3,9 +3,9 @@
 // export const MY_HOST = 'http://192.168.30.96:3001';
 
 //  iSpan-305
-export const MY_HOST = 'http://192.168.1.182:3001';
+// export const MY_HOST = 'http://192.168.1.182:3001';
 
-// export const MY_HOST = 'http://localhost:3001';
+export const MY_HOST = 'http://localhost:3001';
 
 //  iphone
 // export const MY_HOST = 'http://172.20.10.4:3001';

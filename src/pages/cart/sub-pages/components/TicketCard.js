@@ -4,11 +4,11 @@ import CardBodyTop from './CardBodyTop';
 import StateButton from './StateButton';
 import DateInput from './DateInput';
 import CountButton from './CountButton';
-import { useTicketCart } from '../../utils/useCart';
+import { useCart } from '../../utils/useCart';
 import moment from 'moment';
-function TicketCard() {
-  const { items, plusOne, minusOne, removeItem, updateDate } = useTicketCart();
-  // console.log(items);
+function TicketCard({ items }) {
+  const { plusOne, minusOne, removeItem } = useCart();
+
   const toDay = moment(new Date()).format('YYYY-MM-DD');
   return (
     <>
@@ -19,27 +19,27 @@ function TicketCard() {
               <CardTitle
                 text={'票券預定資訊'}
                 deleteFun={() => {
-                  removeItem(v.id);
+                  removeItem(v);
                 }}
               />
               <CardBodyTop productName={v.name} img={v.img} rate={v.rate} />
-              <StateButton text={v.type} />
+              <StateButton text={v.chozenType} />
               <div className="d-flex justify-content-between">
                 <DateInput
                   text={'使用日期'}
                   min={toDay}
-                  date={v.date}
+                  targetItem={v}
+                  date={v.startDate}
                   id={v.id}
-                  updateDate={updateDate}
-                  dateProps={'date'}
+                  dateProps={'startDate'}
                 />
                 <CountButton
                   quantity={v.quantity}
                   plusOne={() => {
-                    plusOne(v.id);
+                    plusOne(v);
                   }}
                   minusOne={() => {
-                    minusOne(v.id);
+                    minusOne(v);
                   }}
                 />
               </div>
