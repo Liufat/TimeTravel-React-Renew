@@ -1,8 +1,8 @@
 import React from 'react';
-import CardHeader from './components/CardHeader';
-import TicketCard from './components/TicketCard';
+import CardHeader from './components/appearance/CardHeader';
+import TicketCard from './components/ticket-card/TicketCard';
 import PriceDetail from './PriceDetail';
-import { useCart } from '../utils/useCart';
+import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
 function CartTicket({ prev, next, step, maxSteps }) {
   const { items } = useCart().cart;

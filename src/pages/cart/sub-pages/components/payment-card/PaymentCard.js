@@ -1,5 +1,4 @@
-import React from 'react';
-import CardHeader from './CardHeader';
+import CardHeader from 'react-bootstrap/esm/CardHeader';
 import PaymentCardInfo from './PaymentCardInfo';
 function PaymentCard({ payMethod, setPayMethod }) {
   return (

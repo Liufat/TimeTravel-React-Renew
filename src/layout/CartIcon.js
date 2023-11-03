@@ -8,16 +8,13 @@ import Swal from 'sweetalert2';
 //   useTicketCart,
 //   useFoodCart,
 // } from '../pages/cart/utils/useCart';
-import { useCart } from '../pages/cart/utils/useCart';
+import { useCart } from '../pages/AllContext/allUseContext';
 
 function CartIcon() {
   const { myAuth } = useContext(AuthContext);
-  // const foodcart = useFoodCart().cart;
-  // const hotelcart = useHotelCart().cart;
-  // const ticketcart = useTicketCart().cart;
-  // console.log(myAuth);
 
   const cartTotalItems = useCart().cart.totalItems;
+  const { cart } = useCart();
 
   const myLogIn = () => {
     if (localStorage.getItem('auth') === null) {
@@ -35,25 +32,51 @@ function CartIcon() {
       });
     }
   };
-  return (
-    <>
-      {myAuth.authorised ? (
-        <NavLink className="nav-link" to="/cart">
-          <img src={CartImg} alt="" />
-          <div className="cart-count">
-            <span>{cartTotalItems}</span>
-          </div>
-        </NavLink>
-      ) : (
-        <div className="nav-link" role="button" onClick={myLogIn}>
-          <img src={CartImg} alt="" />
+
+  const genCartIcon = (type, click) => {
+    if (type === 'stop') {
+      return (
+        <div className="nav-link" role="button" onClick={click}>
+          <img src={CartImg} alt="shopping-cart" />
           <div className="cart-count">
             <span>{cartTotalItems}</span>
           </div>
         </div>
-      )}
-    </>
-  );
+      );
+    }
+    if (type === 'link') {
+      return (
+        <NavLink className="nav-link" to={click}>
+          <img src={CartImg} alt="shopping-cart" />
+          <div className="cart-count">
+            <span>{cartTotalItems}</span>
+          </div>
+        </NavLink>
+      );
+    }
+  };
+
+  const checkCartItems = () => {
+    const cartItemsQuantity = cart.items.length;
+    const alarm = () => {
+      return Swal.fire({
+        title: '您的購物車是空的喔\n快到TimeTravel逛逛吧',
+        confirmButtonText: '確認',
+        confirmButtonColor: '#59d8a1',
+      });
+    };
+    if (!myAuth.authorised) {
+      return genCartIcon('stop', myLogIn);
+    }
+
+    if (cartItemsQuantity === 0) {
+      return genCartIcon('stop', alarm);
+    } else {
+      return genCartIcon('link', '/cart');
+    }
+  };
+
+  return <>{checkCartItems()}</>;
 }
 
 export default CartIcon;

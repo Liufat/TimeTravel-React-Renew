@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { reducer, init } from './cartReducer';
-import useLocalStorage from './useLocalstorage';
+import useLocalStorage from '../localstorage/useLocalstorage';
 
 const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {

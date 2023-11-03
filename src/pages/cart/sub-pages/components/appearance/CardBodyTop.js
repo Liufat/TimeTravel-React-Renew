@@ -1,5 +1,5 @@
 import React from 'react';
-import Pic from './../../../../img/stay_home.jpg';
+import Pic from './../../../../../img/stay_home.jpg';
 import { Rate } from 'antd';
 function CardBodyTop({ productName, rate, img }) {
   return (

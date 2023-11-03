@@ -1,28 +1,36 @@
 import React from 'react';
-import { MakeOrder, LINE_PAY_API, ECPAY_API } from '../../../config';
+import { MAKE_ORDER_API, LINE_PAY_API, ECPAY_API } from '../../../config';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { usePaymentInfo } from '../context/usePaymentInfo';
+import { usePaymentInfo } from '../../AllContext/allUseContext';
+import { useCart } from '../../AllContext/allUseContext';
 
 function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
-  let payUrl;
   const { hotelInformation } = usePaymentInfo();
   const { hotelRepresent, hotelMobile } = hotelInformation;
+
+  //如果購物車中有hotel項目，則需要進行住宿代表人與手機號碼檢查
+  const { cart } = useCart();
+
+  // cart.items.some((item) => item.type === 'hotel') 檢視cart.items中是否含有type === "hotel"的元素，有則回傳true
   const checkInfo = () => {
-    if (hotelRepresent === '' || hotelMobile === '') {
-      Swal.fire({
-        icon: 'error',
-        title: '代表人與手機號碼欄位不能為空白，請重新輸入',
-        confirmButtonText: '確認',
-        confirmButtonColor: '#59d8a1',
-      });
-      return;
-    } else {
-      next();
+    if (cart.items.some((item) => item.type === 'hotel')) {
+      if (hotelRepresent === '' || hotelMobile === '') {
+        Swal.fire({
+          icon: 'error',
+          title: '代表人與手機號碼欄位不能為空白，請重新輸入',
+          confirmButtonText: '確認',
+          confirmButtonColor: '#59d8a1',
+        });
+        return;
+      } else {
+        next();
+      }
     }
+    next();
   };
   const mySubmit = async (e) => {
-    const { data } = await axios.post(MakeOrder, formData);
+    const { data } = await axios.post(MAKE_ORDER_API, formData);
 
     const uuid = data.paymentId;
 
@@ -36,7 +44,7 @@ function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
         confirmButtonColor: '#59d8a1',
       });
       if (payMethod === 'LinePay') {
-        await Linepay(uuid);
+        const payUrl = await Linepay(uuid);
         window.location = payUrl;
       }
 
@@ -67,7 +75,7 @@ function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
   async function Linepay(uuid) {
     const response = await axios.get(LINE_PAY_API(uuid));
     const url = response.data.payUrl;
-    payUrl = url;
+    return url;
   }
 
   async function EcPay(uuid) {

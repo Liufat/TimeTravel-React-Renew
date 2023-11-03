@@ -1,5 +1,5 @@
 import React from 'react';
-import StateButton from './components/StateButton';
+import StateButton from '../appearance/StateButton';
 function PriceDetailCard({ title, items, total }) {
   return (
     <>

@@ -1,8 +1,8 @@
 import React from 'react';
-import CardHeader from './components/CardHeader';
-import HotelCard from './components/HotelCard';
+import CardHeader from './components/appearance/CardHeader';
+import HotelCard from './components/hotel-card/HotelCard';
 import PriceDetail from './PriceDetail';
-import { useCart } from '../utils/useCart';
+import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
 function CartHotel({ prev, next, step, maxSteps }) {
   const { items } = useCart().cart;

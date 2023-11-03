@@ -1,10 +1,10 @@
 import React from 'react';
-import CardTitle from './CardTitle';
-import CardBodyTop from './CardBodyTop';
-import StateButton from './StateButton';
-import { useCart } from '../../utils/useCart';
-import CountButton from './CountButton';
-import DateInput from './DateInput';
+import CardTitle from '../appearance/CardTitle';
+import CardBodyTop from '../appearance/CardBodyTop';
+import StateButton from '../appearance/StateButton';
+import { useCart } from '../../../../AllContext/allUseContext';
+import CountButton from '../function-components/CountButton';
+import DateInput from '../function-components/DateInput';
 
 function HotelCardDetail({ hotelItem }) {
   const { name, rate, img, id, chozenType, quantity, checkin, checkout } =

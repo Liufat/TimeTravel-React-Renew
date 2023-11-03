@@ -5,7 +5,7 @@ import Minus_icon_active from '../../../icon/minusActive.svg';
 import Add_icon from '../../../icon/add.svg';
 import './style/FoodBookingBar.scss';
 import { useFoodContext } from './FoodContext/FoodContext';
-import { useCart } from '../../cart/utils/useCart';
+import { useCart } from '../../AllContext/allUseContext';
 function FoodBookingBar({ foodData }) {
   console.log({ foodData });
   const { slideOut, count, setCount, totalPrice, setTotalPrice } =

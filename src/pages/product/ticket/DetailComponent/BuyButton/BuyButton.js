@@ -2,7 +2,7 @@ import React from 'react';
 import './BuyButton.scss';
 import { useTicketContext } from '../../Context/TicketContext';
 import Swal from 'sweetalert2';
-import { useCart } from '../../../../cart/utils/useCart';
+import { useCart } from '../../../../AllContext/allUseContext';
 function BuyButton() {
   const { addItem } = useCart();
   const {

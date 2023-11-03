@@ -1,7 +1,7 @@
 import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { LINE_PAY_CONFIRM_API } from '../../../config';
+import { LINE_PAY_CONFIRM_API } from '../../config';
 
 function LinepayConfirm() {
   const query = queryString.parse(useLocation().search);

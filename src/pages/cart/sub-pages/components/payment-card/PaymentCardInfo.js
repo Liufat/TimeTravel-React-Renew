@@ -1,5 +1,4 @@
-import React from 'react';
-import { usePaymentInfo } from '../../context/usePaymentInfo';
+import { usePaymentInfo } from '../../../../AllContext/allUseContext';
 
 function PaymentCardInfo() {
   const { paymentInformation, changePaymentInformation } = usePaymentInfo();

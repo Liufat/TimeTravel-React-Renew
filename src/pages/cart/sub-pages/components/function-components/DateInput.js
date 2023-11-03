@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useCart } from '../../utils/useCart';
+import { useCart } from '../../../../AllContext/allUseContext';
 
 function DateInput({ text, date, targetItem, dateProps, min, max }) {
   const [newDate, setNewDate] = useState(date);

@@ -1,5 +1,5 @@
 import React from 'react';
-import deleteIcon from './../../../../icon/delete.svg';
+import deleteIcon from './../../../../../icon/delete.svg';
 import Swal from 'sweetalert2';
 function CardTitle({ text, deleteFun }) {
   return (

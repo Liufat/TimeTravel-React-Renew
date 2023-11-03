@@ -1,9 +1,9 @@
-import PaymentCard from './components/PaymentCard';
+import PaymentCard from './components/payment-card/PaymentCard';
 import ProgressButton from './ProgressButton';
-import { useCart } from '../utils/useCart';
+import { useCart } from '../../AllContext/allUseContext';
 import { useState } from 'react';
 import itemsType from '../hooks/itemsType';
-import { usePaymentInfo } from '../context/usePaymentInfo';
+import { usePaymentInfo } from '../../AllContext/allUseContext';
 import makingPriceDetail from '../hooks/makingPriceDetail';
 function CartPayment({ prev, next, step, maxSteps, paymentId, setPaymentId }) {
   const [payMethod, setPayMethod] = useState('');

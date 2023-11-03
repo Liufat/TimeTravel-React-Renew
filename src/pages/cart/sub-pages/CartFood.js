@@ -1,8 +1,8 @@
 import React from 'react';
-import CardHeader from './components/CardHeader';
-import FoodCard from './components/FoodCard';
+import CardHeader from './components/appearance/CardHeader';
+import FoodCard from './components/food-card/FoodCard';
 import PriceDetail from './PriceDetail';
-import { useCart } from '../utils/useCart';
+import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
 function CartFood({ prev, next, step, maxSteps }) {
   const { items } = useCart().cart;

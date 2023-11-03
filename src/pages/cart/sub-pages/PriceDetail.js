@@ -1,8 +1,8 @@
 import React from 'react';
-import PriceDetailCard from './PriceDetailCard';
+import PriceDetailCard from './components/price-detail-card/PriceDetailCard';
 import ProgressButton from './ProgressButton';
-import { useCart } from './../utils/useCart';
-import './../styles/PriceDetail.scss';
+import { useCart } from '../../AllContext/allUseContext';
+import './PriceDetail.scss';
 import makingPriceDetail from '../hooks/makingPriceDetail';
 
 function PriceDetail({ prev, next, step, maxSteps }) {

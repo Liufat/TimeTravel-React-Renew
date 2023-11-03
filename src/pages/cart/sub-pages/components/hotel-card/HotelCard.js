@@ -1,8 +1,8 @@
 import React from 'react';
 import HotelCardInfo from './HotelCardInfo';
 import HotelCardDetail from './HotelCardDetail';
-import { useCart } from '../../utils/useCart';
-import itemsType from '../../hooks/itemsType';
+import { useCart } from '../../../../AllContext/allUseContext';
+import itemsType from '../../../hooks/itemsType';
 
 function HotelCard({}) {
   const { items } = useCart().cart;

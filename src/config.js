@@ -32,7 +32,7 @@ export const ADD_COLLECT = `${MY_HOST}/productAll/AddCollect`;
 export const DEL_COLLECT = `${MY_HOST}/productAll/DelCollect`;
 export const GET_COLLECT = `${MY_HOST}/productAll/checkCollect/:member`;
 //購物車路徑
-export const MakeOrder = `${MY_HOST}/cart/api/makeorder`;
+export const MAKE_ORDER_API = `${MY_HOST}/cart/api/makeorder`;
 // export const MakeHotelOrder = `${MY_HOST}/cart/api/makehotelorder`;
 // export const MakeFoodOrder = `${MY_HOST}/cart/api/makefoodorder`;
 // export const MakeTicketOrder = `${MY_HOST}/cart/api/maketicketorder`;

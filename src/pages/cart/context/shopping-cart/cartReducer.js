@@ -114,7 +114,7 @@ const updateItemFunction = (state, action) => {
 */
 
 const removeItemFunction = (state, action) => {
-  console.log(state, action);
+  // console.log(state, action);
   const newItems = [...state.items];
   const newFilterItems = newItems.filter((item) => {
     return item.type !== action.payload.type || item.id !== action.payload.id;

@@ -32,7 +32,7 @@ import ItineraryDetail from './pages/product/itinerary/Itinerary-detail';
 import Orders from './pages/cart/order/Orders';
 import OrderSuccess from './pages/cart/OrderSuccess';
 import OrderFail from './pages/cart/OrderFail';
-import LinepayConfirm from './pages/cart/sub-pages/LinepayConfirm';
+import LinepayConfirm from './pages/cart/LinepayConfirm';
 //context
 import { FoodContextProvider } from './pages/product/food/FoodContext/FoodContext';
 import { HotelContextProvider } from './pages/product/stays/Context/HotelContext';
@@ -43,8 +43,8 @@ import { AllContextProvider } from './pages/AllContext/AllContext';
 
 import { ItineraryContextProvider } from './pages/product/itinerary/ItineraryContext';
 
-import { CartProvider } from './pages/cart/utils/useCart';
-import { PaymentInfoProvider } from './pages/cart/context/usePaymentInfo';
+import { CartProvider } from './pages/cart/context/shopping-cart/useCart';
+import { PaymentInfoProvider } from './pages/cart/context/shopping-cart/usePaymentInfo';
 
 function App() {
   return (

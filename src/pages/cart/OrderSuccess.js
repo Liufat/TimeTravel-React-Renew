@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../../layout/NavBar';
 import Footer from '../../layout/Footer';
-import './styles/Cart.scss';
+import './Cart.scss';
 import SuccessIcon from './../../icon/success_cart.svg';
 
 function OrderSuccess() {

@@ -1,8 +1,8 @@
 import React from 'react';
-import CardTitle from './CardTitle';
-import CardBodyTop from './CardBodyTop';
-import CountButton from './CountButton';
-import { useCart } from '../../utils/useCart';
+import CardTitle from '../appearance/CardTitle';
+import CardBodyTop from '../appearance/CardBodyTop';
+import CountButton from './../function-components/CountButton';
+import { useCart } from '../../../../AllContext/allUseContext';
 
 function FoodCard({ items }) {
   const { plusOne, minusOne, removeItem } = useCart();

@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import { createContext, useContext } from 'react';
-import useLocalStorage from './useLocalstorage';
+import useLocalStorage from '../../hooks/useLocalstorage';
 import { initialState, CarReducer } from './cartReducer';
 
 const CartContext = createContext();
@@ -80,11 +80,11 @@ function CartProvider({
   );
 }
 
-const useCart = () => {
+const useCartContext = () => {
   const context = useContext(CartContext);
   if (context === undefined)
     throw new Error('CartContext was used outside of the CartProvider');
   return context;
 };
 
-export { CartProvider, useCart };
+export { CartProvider, useCartContext };

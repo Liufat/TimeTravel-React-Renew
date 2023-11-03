@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useFoodContext } from './FoodContext/FoodContext.js';
 import { FOOD_ITEM } from '../../../config.js';
 import { FOOD_COMMENT } from '../../../config.js';
-import { useCart } from '../../cart/utils/useCart';
+import { useCart } from '../../AllContext/allUseContext.js';
 import FoodMap from './FoodMap';
 import Comment from './Comment';
 import CommentSelector from './CommentSelector';

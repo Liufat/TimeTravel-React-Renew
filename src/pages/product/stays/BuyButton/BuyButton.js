@@ -1,7 +1,7 @@
 import React from 'react';
 import './BuyButton.scss';
 import { useHotelContext } from '../Context/HotelContext';
-import { useCart } from './../../../cart/utils/useCart';
+import { useCart } from '../../../AllContext/allUseContext';
 import Swal from 'sweetalert2';
 function BuyButton() {
   const { addItem } = useCart();

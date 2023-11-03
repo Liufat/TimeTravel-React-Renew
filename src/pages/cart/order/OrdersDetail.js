@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import OrdersTypesList from './components/OrdersTypesList';
-import './../styles/OrdersDetails.scss';
+import './OrdersDetails.scss';
 import OrdersCard from './components/OrdersCard';
 import OrdersHistory from './components/OrdersHistory';
 import OrdersUndone from './components/OrdersUndone';

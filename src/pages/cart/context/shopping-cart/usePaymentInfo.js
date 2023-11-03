@@ -36,11 +36,11 @@ function PaymentInfoProvider({ children }) {
   );
 }
 
-const usePaymentInfo = () => {
+const usePaymentInfoContext = () => {
   const context = useContext(PaymentInfoContext);
   if (context === undefined)
     throw new Error('CartContext was used outside of the CartProvider');
   return context;
 };
 
-export { PaymentInfoProvider, usePaymentInfo };
+export { PaymentInfoProvider, usePaymentInfoContext };
