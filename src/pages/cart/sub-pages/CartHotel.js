@@ -4,7 +4,7 @@ import HotelCard from './components/hotel-card/HotelCard';
 import PriceDetail from './PriceDetail';
 import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
-function CartHotel({ prev, next, step, maxSteps }) {
+function CartHotel() {
   const { items } = useCart().cart;
   const hotelItems = itemsType(items, 'hotel');
 
@@ -18,12 +18,7 @@ function CartHotel({ prev, next, step, maxSteps }) {
               <HotelCard />
             </div>
             <div className="col-lg-4">
-              <PriceDetail
-                prev={prev}
-                next={next}
-                step={step}
-                maxSteps={maxSteps}
-              />
+              <PriceDetail />
             </div>
           </div>
         </div>
@@ -41,12 +36,7 @@ function CartHotel({ prev, next, step, maxSteps }) {
               </div>
             </div>
             <div className="col-lg-4">
-              <PriceDetail
-                prev={prev}
-                next={next}
-                step={step}
-                maxSteps={maxSteps}
-              />
+              <PriceDetail />
             </div>
           </div>
         </div>

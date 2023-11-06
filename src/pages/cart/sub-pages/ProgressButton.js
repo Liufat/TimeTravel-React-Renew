@@ -4,8 +4,11 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { usePaymentInfo } from '../../AllContext/allUseContext';
 import { useCart } from '../../AllContext/allUseContext';
+import { useProgressContext } from '../context/shopping-cart/useProgress';
 
-function ProgressButton({ prev, next, step, maxSteps, formData, payMethod }) {
+function ProgressButton({ formData, payMethod }) {
+  const { step, maxSteps, prev, next } = useProgressContext();
+
   const { hotelInformation } = usePaymentInfo();
   const { hotelRepresent, hotelMobile } = hotelInformation;
 

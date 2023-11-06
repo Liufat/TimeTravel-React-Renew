@@ -5,7 +5,7 @@ import { useState } from 'react';
 import itemsType from '../hooks/itemsType';
 import { usePaymentInfo } from '../../AllContext/allUseContext';
 import makingPriceDetail from '../hooks/makingPriceDetail';
-function CartPayment({ prev, next, step, maxSteps, paymentId, setPaymentId }) {
+function CartPayment({ paymentId, setPaymentId }) {
   const [payMethod, setPayMethod] = useState('');
   //取得存在localstorga的會員sid
   const member = JSON.parse(localStorage.getItem('auth'));
@@ -90,10 +90,6 @@ function CartPayment({ prev, next, step, maxSteps, paymentId, setPaymentId }) {
       </div>
       <div>
         <ProgressButton
-          prev={prev}
-          next={next}
-          step={step}
-          maxSteps={maxSteps}
           formData={formData}
           payMethod={payMethod}
           // uuid={uuid}

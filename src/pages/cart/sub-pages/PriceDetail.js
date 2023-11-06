@@ -5,7 +5,7 @@ import { useCart } from '../../AllContext/allUseContext';
 import './PriceDetail.scss';
 import makingPriceDetail from '../hooks/makingPriceDetail';
 
-function PriceDetail({ prev, next, step, maxSteps }) {
+function PriceDetail() {
   const { cart } = useCart();
 
   // console.log(cart);
@@ -63,12 +63,7 @@ function PriceDetail({ prev, next, step, maxSteps }) {
         </h1>
       </div>
       <div>
-        <ProgressButton
-          prev={prev}
-          next={next}
-          step={step}
-          maxSteps={maxSteps}
-        />
+        <ProgressButton />
       </div>
     </div>
   );

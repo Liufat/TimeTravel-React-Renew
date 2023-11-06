@@ -11,17 +11,11 @@ import CartTicket from './sub-pages/CartTicket';
 import CartPayment from './sub-pages/CartPayment';
 //導入進度條
 import ProgressBar from './components/ProgressBar';
+import { useProgressContext } from './context/shopping-cart/useProgress';
 
 function Cart() {
-  const maxSteps = 4;
-  const [step, setStep] = useState(1);
-  const next = () => {
-    // 沒錯誤才會到下一步
-    if (step < maxSteps) setStep(step + 1);
-  };
-  const prev = () => {
-    if (step > 1) setStep(step - 1);
-  };
+  const { step, maxSteps, next, prev } = useProgressContext();
+
   const pageNames = ['住宿', '美食', '票券', '結帳'];
 
   const components = [CartHotel, CartFood, CartTicket, CartPayment];
@@ -36,12 +30,7 @@ function Cart() {
         <div className="space"></div>
         <ProgressBar step={step} maxSteps={maxSteps} pageNames={pageNames} />
         <div className="cart-d-wrap">
-          <BlockComponent
-            prev={prev}
-            next={next}
-            step={step}
-            maxSteps={maxSteps}
-          />
+          <BlockComponent />
         </div>
         <Footer />
       </div>

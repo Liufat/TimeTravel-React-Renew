@@ -4,7 +4,7 @@ import TicketCard from './components/ticket-card/TicketCard';
 import PriceDetail from './PriceDetail';
 import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
-function CartTicket({ prev, next, step, maxSteps }) {
+function CartTicket() {
   const { items } = useCart().cart;
   const ticketItems = itemsType(items, 'ticket');
   if (ticketItems.length !== 0) {
@@ -17,12 +17,7 @@ function CartTicket({ prev, next, step, maxSteps }) {
               <TicketCard items={ticketItems} />
             </div>
             <div className="col-lg-4">
-              <PriceDetail
-                prev={prev}
-                next={next}
-                step={step}
-                maxSteps={maxSteps}
-              />
+              <PriceDetail />
             </div>
           </div>
         </div>
@@ -40,12 +35,7 @@ function CartTicket({ prev, next, step, maxSteps }) {
               </div>
             </div>
             <div className="col-lg-4">
-              <PriceDetail
-                prev={prev}
-                next={next}
-                step={step}
-                maxSteps={maxSteps}
-              />
+              <PriceDetail />
             </div>
           </div>
         </div>

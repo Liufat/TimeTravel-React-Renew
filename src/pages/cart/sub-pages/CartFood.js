@@ -4,7 +4,7 @@ import FoodCard from './components/food-card/FoodCard';
 import PriceDetail from './PriceDetail';
 import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
-function CartFood({ prev, next, step, maxSteps }) {
+function CartFood() {
   const { items } = useCart().cart;
 
   const foodItems = itemsType(items, 'food');
@@ -19,12 +19,7 @@ function CartFood({ prev, next, step, maxSteps }) {
               <FoodCard items={foodItems} />
             </div>
             <div className="col-lg-4">
-              <PriceDetail
-                prev={prev}
-                next={next}
-                step={step}
-                maxSteps={maxSteps}
-              />
+              <PriceDetail />
             </div>
           </div>
         </div>
@@ -43,12 +38,7 @@ function CartFood({ prev, next, step, maxSteps }) {
                 </div>
               </div>
               <div className="col-lg-4">
-                <PriceDetail
-                  prev={prev}
-                  next={next}
-                  step={step}
-                  maxSteps={maxSteps}
-                />
+                <PriceDetail />
               </div>
             </div>
           </div>

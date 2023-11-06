@@ -43,6 +43,8 @@ import { AllContextProvider } from './pages/AllContext/AllContext';
 
 import { ItineraryContextProvider } from './pages/product/itinerary/ItineraryContext';
 
+import { ProgressContextProvider } from './pages/cart/context/shopping-cart/useProgress';
+
 import { CartProvider } from './pages/cart/context/shopping-cart/useCart';
 import { PaymentInfoProvider } from './pages/cart/context/shopping-cart/usePaymentInfo';
 
@@ -59,68 +61,76 @@ function App() {
                   <HotelContextProvider>
                     <TicketContextProvider>
                       <AuthContextProvider>
-                        <ScrollToTop>
-                          <Routes>
-                            <Route path="/" element={<Layout />}>
-                              {/* index代表此路由中的預設子頁 */}
-                              <Route index element={<Home />} />
-                            </Route>
-                            <Route
-                              path="productList"
-                              element={<ProductList />}
-                            />
-                            <Route path="itinerary" element={<Itinerary />} />
-                            <Route
-                              path="itinerary/:sid"
-                              element={<ItineraryDetail />}
-                            />
-                            <Route path="site" element={<Site />} />
-                            <Route path="site/:sid" element={<SiteDetail />} />
-                            <Route path="food" element={<Food />} />
-                            <Route
-                              path="food/detail"
-                              element={<FoodDetail />}
-                            />
-                            <Route path="stays" element={<Stays />} />
-                            <Route
-                              path="stays/detail/:sid"
-                              element={<StaysDetail />}
-                            />
-                            <Route path="ticket" element={<Ticket />} />
-                            <Route
-                              path="ticket/detail/:sid"
-                              element={<TicketDetail />}
-                            />
-                            <Route path="logIn" element={<LogIn />} />
-                            <Route
-                              path="forget_password"
-                              element={<ForgetPassword />}
-                            />
-                            <Route path="profile" element={<Profile />} />
-                            <Route
-                              path="reset_password"
-                              element={<ResetPassword />}
-                            />
-                            <Route
-                              path="ticket_qrcode"
-                              element={<TicketQRcode />}
-                            />
-                            <Route path="comment" element={<Comment />} />
-                            <Route path="collect" element={<Collect />} />
-                            <Route path="signIn" element={<SignIn />} />
-                            <Route
-                              path="cart/success"
-                              element={<OrderSuccess />}
-                            />
-                            <Route
-                              path="linepayconfirm"
-                              element={<LinepayConfirm />}
-                            />
-                            <Route path="cart/fail" element={<OrderFail />} />
-                            <Route path="cart" element={<CartPageCompile />} />
-                            <Route path="orders" element={<Orders />} />
-                          </Routes>
-                        </ScrollToTop>
+                        <ProgressContextProvider>
+                          <ScrollToTop>
+                            <Routes>
+                              <Route path="/" element={<Layout />}>
+                                {/* index代表此路由中的預設子頁 */}
+                                <Route index element={<Home />} />
+                              </Route>
+                              <Route
+                                path="productList"
+                                element={<ProductList />}
+                              />
+                              <Route path="itinerary" element={<Itinerary />} />
+                              <Route
+                                path="itinerary/:sid"
+                                element={<ItineraryDetail />}
+                              />
+                              <Route path="site" element={<Site />} />
+                              <Route
+                                path="site/:sid"
+                                element={<SiteDetail />}
+                              />
+                              <Route path="food" element={<Food />} />
+                              <Route
+                                path="food/detail"
+                                element={<FoodDetail />}
+                              />
+                              <Route path="stays" element={<Stays />} />
+                              <Route
+                                path="stays/detail/:sid"
+                                element={<StaysDetail />}
+                              />
+                              <Route path="ticket" element={<Ticket />} />
+                              <Route
+                                path="ticket/detail/:sid"
+                                element={<TicketDetail />}
+                              />
+                              <Route path="logIn" element={<LogIn />} />
+                              <Route
+                                path="forget_password"
+                                element={<ForgetPassword />}
+                              />
+                              <Route path="profile" element={<Profile />} />
+                              <Route
+                                path="reset_password"
+                                element={<ResetPassword />}
+                              />
+                              <Route
+                                path="ticket_qrcode"
+                                element={<TicketQRcode />}
+                              />
+                              <Route path="comment" element={<Comment />} />
+                              <Route path="collect" element={<Collect />} />
+                              <Route path="signIn" element={<SignIn />} />
+                              <Route
+                                path="cart/success"
+                                element={<OrderSuccess />}
+                              />
+                              <Route
+                                path="linepayconfirm"
+                                element={<LinepayConfirm />}
+                              />
+                              <Route path="cart/fail" element={<OrderFail />} />
+                              <Route
+                                path="cart"
+                                element={<CartPageCompile />}
+                              />
+                              <Route path="orders" element={<Orders />} />
+                            </Routes>
+                          </ScrollToTop>
+                        </ProgressContextProvider>
                       </AuthContextProvider>
                     </TicketContextProvider>
                   </HotelContextProvider>

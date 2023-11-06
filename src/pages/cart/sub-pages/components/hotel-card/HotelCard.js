@@ -4,7 +4,7 @@ import HotelCardDetail from './HotelCardDetail';
 import { useCart } from '../../../../AllContext/allUseContext';
 import itemsType from '../../../hooks/itemsType';
 
-function HotelCard({}) {
+function HotelCard() {
   const { items } = useCart().cart;
   const hotelItems = itemsType(items, 'hotel');
 
