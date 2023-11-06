@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactComponent as Add } from './../../../../../icon/add.svg';
 import { ReactComponent as Minus } from './../../../../../icon/minus.svg';
-import './CountButton.scss';
+
 function CountButton({ quantity, plusOne, minusOne }) {
   return (
     <div className="count-btn-wrap">

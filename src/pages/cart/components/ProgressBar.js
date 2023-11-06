@@ -1,5 +1,4 @@
 import React from 'react';
-import './ProgressBar.scss';
 function ProgressBar({ maxSteps, step, pageNames }) {
   return (
     <>
