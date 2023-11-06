@@ -27,7 +27,7 @@ import ResetPassword from './pages/member/ResetPassword';
 import TicketQRcode from './pages/member/TicketQRcode';
 import Comment from './pages/member/Comment';
 import Collect from './pages/member/Collect';
-import Cart from './pages/cart/Cart';
+import CartPageCompile from './pages/cart/PageCompile/CartPageCompile';
 import ItineraryDetail from './pages/product/itinerary/Itinerary-detail';
 import Orders from './pages/cart/order/Orders';
 import OrderSuccess from './pages/cart/OrderSuccess';
@@ -117,7 +117,7 @@ function App() {
                               element={<LinepayConfirm />}
                             />
                             <Route path="cart/fail" element={<OrderFail />} />
-                            <Route path="cart" element={<Cart />} />
+                            <Route path="cart" element={<CartPageCompile />} />
                             <Route path="orders" element={<Orders />} />
                           </Routes>
                         </ScrollToTop>

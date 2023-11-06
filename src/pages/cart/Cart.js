@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //導入CSS
-import './Cart.scss';
+import './PageCompile/CartPageCompile.scss';
 //導入排版
 import NavBar from '../../layout/NavBar';
 import Footer from '../../layout/Footer';
