@@ -12,6 +12,7 @@ import CartPayment from './sub-pages/CartPayment';
 //導入進度條
 import ProgressBar from './components/ProgressBar';
 import { useProgressContext } from './context/shopping-cart/useProgress';
+import ProgressButton from './sub-pages/ProgressButton';
 
 function Cart() {
   const { step, maxSteps } = useProgressContext();
@@ -34,6 +35,7 @@ function Cart() {
             <div className="row">
               <BlockComponent />
             </div>
+            <div>{step !== maxSteps ? <ProgressButton /> : ''}</div>
           </div>
         </div>
         <Footer />

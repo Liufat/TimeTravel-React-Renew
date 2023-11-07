@@ -1,38 +1,11 @@
 import React from 'react';
 import PriceDetailCard from './components/price-detail-card/PriceDetailCard';
-import ProgressButton from './ProgressButton';
 import { useCart } from '../../AllContext/allUseContext';
 import './PriceDetail.scss';
 import makingPriceDetail from '../hooks/makingPriceDetail';
 
 function PriceDetail() {
   const { cart } = useCart();
-
-  // console.log(cart);
-
-  // console.log(cart);
-  // const makingPriceDetail = (type) => {
-  //   const priceItems = cart.items.filter((item) => item.type === type);
-
-  //   const itemTotalPrice =
-  //     // 如果是住宿的價錢，還要考慮到天數
-  //     type !== 'hotel'
-  //       ? priceItems
-  //           .map((priceItem) => priceItem.price * priceItem.quantity)
-  //           .reduce((acc, cur) => acc + cur, 0)
-  //       : priceItems
-  //           .map(
-  //             (priceItem) =>
-  //               (priceItem.price *
-  //                 priceItem.quantity *
-  //                 (+new Date(priceItem.checkout) -
-  //                   +new Date(priceItem.checkin))) /
-  //               86400000
-  //           )
-  //           .reduce((acc, cur) => acc + cur, 0);
-
-  //   return { items: priceItems, totalPrice: itemTotalPrice };
-  // };
 
   const hotel = makingPriceDetail(cart, 'hotel');
   const food = makingPriceDetail(cart, 'food');
@@ -61,9 +34,6 @@ function PriceDetail() {
         <h1 className="total">
           {hotel.totalPrice + food.totalPrice + ticket.totalPrice}
         </h1>
-      </div>
-      <div>
-        <ProgressButton />
       </div>
     </div>
   );
