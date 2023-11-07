@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardHeader from './components/appearance/CardHeader';
 import TicketCard from './components/ticket-card/TicketCard';
 import PriceDetail from './PriceDetail';
 import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
 function CartTicket() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   const { items } = useCart().cart;
   const ticketItems = itemsType(items, 'ticket');
   if (ticketItems.length !== 0) {

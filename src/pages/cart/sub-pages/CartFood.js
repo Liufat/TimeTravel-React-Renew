@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardHeader from './components/appearance/CardHeader';
 import FoodCard from './components/food-card/FoodCard';
 import PriceDetail from './PriceDetail';
@@ -6,6 +6,10 @@ import { useCart } from '../../AllContext/allUseContext';
 import itemsType from '../hooks/itemsType';
 function CartFood() {
   const { items } = useCart().cart;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const foodItems = itemsType(items, 'food');
 

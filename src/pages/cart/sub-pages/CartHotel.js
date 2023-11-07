@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardHeader from './components/appearance/CardHeader';
 import HotelCard from './components/hotel-card/HotelCard';
 import PriceDetail from './PriceDetail';
@@ -7,6 +7,10 @@ import itemsType from '../hooks/itemsType';
 function CartHotel() {
   const { items } = useCart().cart;
   const hotelItems = itemsType(items, 'hotel');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   if (hotelItems.length !== 0) {
     return (

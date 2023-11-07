@@ -1,7 +1,7 @@
 import PaymentCard from './components/payment-card/PaymentCard';
 import ProgressButton from './ProgressButton';
 import { useCart } from '../../AllContext/allUseContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import itemsType from '../hooks/itemsType';
 import { usePaymentInfo } from '../../AllContext/allUseContext';
 import makingPriceDetail from '../hooks/makingPriceDetail';
@@ -68,6 +68,10 @@ function CartPayment({ paymentId, setPaymentId }) {
   // console.log(newTicket);
   // console.log(order);
   // {food:[{id: "1",itemTotal: 25000,name: "美食1",picture: "https://via.placeholder.com/32",price: 25000,quantity: 1,rate: 4}],hotel:[{}],ticket:[{}]}
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <>
