@@ -192,7 +192,7 @@ function NavBar() {
                 </>
               )}
             </div>
-            <div className="cart icon">{<CartIcon />}</div>
+            <div className="cartIcon">{<CartIcon />}</div>
           </div>
         </div>
       </nav>

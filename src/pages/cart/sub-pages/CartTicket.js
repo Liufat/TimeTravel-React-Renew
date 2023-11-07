@@ -9,37 +9,33 @@ function CartTicket() {
   const ticketItems = itemsType(items, 'ticket');
   if (ticketItems.length !== 0) {
     return (
-      <div className="container">
-        <div className="row">
-          <CardHeader text={'票券資訊'} />
-          <div className="d-flex justify-content-between">
-            <div className="col-lg-7">
-              <TicketCard items={ticketItems} />
-            </div>
-            <div className="col-lg-4">
-              <PriceDetail />
-            </div>
+      <>
+        <CardHeader text={'票券資訊'} />
+        <div className="d-flex justify-content-between">
+          <div className="col-lg-7">
+            <TicketCard items={ticketItems} />
+          </div>
+          <div className="col-lg-4">
+            <PriceDetail />
           </div>
         </div>
-      </div>
+      </>
     );
   } else {
     return (
-      <div className="container">
-        <div className="row">
-          <CardHeader text={'票券資訊'} />
-          <div className="d-flex justify-content-between">
-            <div className="col-lg-7">
-              <div className="empty-cart">
-                <h1>您的票券購物車是空的喔！</h1>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <PriceDetail />
+      <>
+        <CardHeader text={'票券資訊'} />
+        <div className="d-flex justify-content-between">
+          <div className="col-lg-7">
+            <div className="empty-cart">
+              <h1>您的票券購物車是空的喔！</h1>
             </div>
           </div>
+          <div className="col-lg-4">
+            <PriceDetail />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -10,8 +10,8 @@ function CartHotel() {
 
   if (hotelItems.length !== 0) {
     return (
-      <div className="container">
-        <div className="row">
+      <>
+        <div className="cardHotel">
           <CardHeader text={'訂房資訊'} />
           <div className="d-flex justify-content-between">
             <div className="col-lg-7">
@@ -22,12 +22,12 @@ function CartHotel() {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   } else {
     return (
-      <div className="container">
-        <div className="row">
+      <>
+        <div className="cardHotel">
           <div className="d-flex justify-content-between">
             <div className="col-lg-7">
               <CardHeader text={'訂房資訊'} />
@@ -40,7 +40,7 @@ function CartHotel() {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

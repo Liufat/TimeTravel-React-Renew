@@ -14,7 +14,7 @@ import ProgressBar from './components/ProgressBar';
 import { useProgressContext } from './context/shopping-cart/useProgress';
 
 function Cart() {
-  const { step, maxSteps, next, prev } = useProgressContext();
+  const { step, maxSteps } = useProgressContext();
 
   const pageNames = ['住宿', '美食', '票券', '結帳'];
 
@@ -25,12 +25,16 @@ function Cart() {
 
   return (
     <>
-      <div className="cart-total-wrap">
-        <NavBar />
-        <div className="space"></div>
+      <NavBar />
+      <div className="cart">
+        {/* <div className="space"></div> */}
         <ProgressBar step={step} maxSteps={maxSteps} pageNames={pageNames} />
-        <div className="cart-d-wrap">
-          <BlockComponent />
+        <div className="cart__detail">
+          <div className="container">
+            <div className="row">
+              <BlockComponent />
+            </div>
+          </div>
         </div>
         <Footer />
       </div>

@@ -11,36 +11,30 @@ function CartFood() {
 
   if (foodItems.length !== 0) {
     return (
-      <div className="container">
-        <div className="row">
-          <CardHeader text={'美食資訊'} />
-          <div className="d-flex justify-content-between">
-            <div className="col-lg-7">
-              <FoodCard items={foodItems} />
-            </div>
-            <div className="col-lg-4">
-              <PriceDetail />
-            </div>
+      <>
+        <CardHeader text={'美食資訊'} />
+        <div className="d-flex justify-content-between">
+          <div className="col-lg-7">
+            <FoodCard items={foodItems} />
+          </div>
+          <div className="col-lg-4">
+            <PriceDetail />
           </div>
         </div>
-      </div>
+      </>
     );
   } else {
     return (
       <>
-        <div className="container">
-          <div className="row">
-            <CardHeader text={'美食資訊'} />
-            <div className="d-flex justify-content-between">
-              <div className="col-lg-7">
-                <div className="empty-cart">
-                  <h1>您的美食購物車是空的喔！</h1>
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <PriceDetail />
-              </div>
+        <CardHeader text={'美食資訊'} />
+        <div className="d-flex justify-content-between">
+          <div className="col-lg-7">
+            <div className="empty-cart">
+              <h1>您的美食購物車是空的喔！</h1>
             </div>
+          </div>
+          <div className="col-lg-4">
+            <PriceDetail />
           </div>
         </div>
       </>

@@ -70,32 +70,17 @@ function CartPayment({ paymentId, setPaymentId }) {
   // {food:[{id: "1",itemTotal: 25000,name: "美食1",picture: "https://via.placeholder.com/32",price: 25000,quantity: 1,rate: 4}],hotel:[{}],ticket:[{}]}
 
   return (
-    <div className="container">
-      <div className="row">
-        <PaymentCard
-          paymentId={paymentId}
-          payMethod={payMethod}
-          setPaymentId={setPaymentId}
-          setPayMethod={setPayMethod}
-        />
-      </div>
+    <>
+      <PaymentCard
+        paymentId={paymentId}
+        payMethod={payMethod}
+        setPaymentId={setPaymentId}
+        setPayMethod={setPayMethod}
+      />
       <div>
-        {/* <button
-          onClick={() => {
-            setPayMethod('linePay');
-          }}
-        >
-          LinePay
-        </button> */}
+        <ProgressButton formData={formData} payMethod={payMethod} />
       </div>
-      <div>
-        <ProgressButton
-          formData={formData}
-          payMethod={payMethod}
-          // uuid={uuid}
-        />
-      </div>
-    </div>
+    </>
   );
 }
 
