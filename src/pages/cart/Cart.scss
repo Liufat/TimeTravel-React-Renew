@@ -27,6 +27,9 @@
 
   p {
     margin: 0;
+    &.fail {
+      color: #ea8a8a;
+    }
   }
   .credit-input-wrap {
     .credit-input {

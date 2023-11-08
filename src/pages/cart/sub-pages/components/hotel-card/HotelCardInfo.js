@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { usePaymentInfo } from '../../../../AllContext/allUseContext';
 
 function HotelCardInfo() {
-  const { hotelRepresent, hotelMobile } = usePaymentInfo().hotelInformation;
+  const { hotelRepresent, checkHotelMobile } =
+    usePaymentInfo().hotelInformation;
 
   const { changeHotelInformation } = usePaymentInfo();
+
   return (
     <div className="card-wrap">
       <div className="card-body">
@@ -42,14 +44,27 @@ function HotelCardInfo() {
               className="input form-control"
               type={'tel'}
               placeholder={'請輸入正確的手機號碼'}
-              value={hotelMobile}
               onChange={(e) => {
                 const mobile = e.target.value;
-                changeHotelInformation({ hotelMobile: mobile });
-                // console.log(mobile);
+                const mibileReCheck = /0{1}9{1}\d{8}/;
+                if (mibileReCheck.test(mobile)) {
+                  changeHotelInformation({
+                    hotelMobile: mobile,
+                    checkHotelMobile: true,
+                  });
+                } else {
+                  changeHotelInformation({ hotelMobile: '' });
+                }
               }}
             />
           </div>
+          {checkHotelMobile === false ? (
+            <div>
+              <p className="fail">請輸入正確的手機格式</p>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>

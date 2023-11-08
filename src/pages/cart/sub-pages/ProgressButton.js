@@ -9,7 +9,7 @@ import { useProgressContext } from '../context/shopping-cart/useProgress';
 function ProgressButton({ formData, payMethod }) {
   const { step, maxSteps, prev, next } = useProgressContext();
 
-  const { hotelInformation } = usePaymentInfo();
+  const { hotelInformation, changeHotelInformation } = usePaymentInfo();
   const { hotelRepresent, hotelMobile } = hotelInformation;
 
   //如果購物車中有hotel項目，則需要進行住宿代表人與手機號碼檢查
@@ -17,14 +17,25 @@ function ProgressButton({ formData, payMethod }) {
 
   // cart.items.some((item) => item.type === 'hotel') 檢視cart.items中是否含有type === "hotel"的元素，有則回傳true
   const checkInfo = () => {
+    const mobileReCheck = /0{1}9{1}\d{8}/;
     if (cart.items.some((item) => item.type === 'hotel')) {
-      if (hotelRepresent === '' || hotelMobile === '') {
+      if (hotelRepresent === '') {
         Swal.fire({
           icon: 'error',
-          title: '代表人與手機號碼欄位不能為空白，請重新輸入',
+          title: '代表人欄位不能為空白，請重新輸入',
           confirmButtonText: '確認',
           confirmButtonColor: '#59d8a1',
         });
+        changeHotelInformation({ checkHotelMobile: false });
+        return;
+      } else if (mobileReCheck.test(hotelMobile) === false) {
+        Swal.fire({
+          icon: 'error',
+          title: '請填入有效的連絡電話',
+          confirmButtonText: '確認',
+          confirmButtonColor: '#59d8a1',
+        });
+        changeHotelInformation({ checkHotelMobile: false });
         return;
       } else {
         next();
@@ -64,17 +75,6 @@ function ProgressButton({ formData, payMethod }) {
     }
   };
 
-  // const tryMakingOrder = async () => {
-  //   const { data } = await axios.post(MakeOrder, formData);
-  //   console.log(data);
-  //   //   const recentPaymentId = 272023102500099;
-  //   //   const lastNum = (
-  //   //     Number(recentPaymentId.toString().slice(-5)) + 1
-  //   //   ).toString();
-
-  //   //   console.log(lastNum.padStart(5, '0'));
-  // };
-
   async function Linepay(uuid) {
     const response = await axios.get(LINE_PAY_API(uuid));
     const url = response.data.payUrl;
@@ -111,15 +111,6 @@ function ProgressButton({ formData, payMethod }) {
         </button>
       ) : (
         <>
-          {/* <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={() => {
-              tryMakingOrder();
-            }}
-          >
-            模擬付款失敗
-          </button> */}
           <button
             type="submit"
             className="btn btn-primary"

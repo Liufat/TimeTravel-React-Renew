@@ -6,6 +6,7 @@ function PaymentInfoProvider({ children }) {
   const [hotelInformation, setHotelInformation] = useState({
     hotelRepresent: '',
     hotelMobile: '',
+    checkHotelMobile: '',
   });
   const [paymentInformation, setPaymentInformation] = useState({
     paymentRepresent: '',
@@ -22,6 +23,7 @@ function PaymentInfoProvider({ children }) {
     const newObj = { ...paymentInformation, ...payload };
     setPaymentInformation(newObj);
   };
+
   return (
     <PaymentInfoContext.Provider
       value={{
