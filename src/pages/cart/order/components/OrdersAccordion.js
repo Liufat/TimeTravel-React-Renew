@@ -32,7 +32,7 @@ function OrdersAccordion({ createdTime, uuid, totalPrice, memberSid }) {
     getHotelOrders();
     getTicketOrders();
   }, [uuid]);
-  console.log(foodOrdersData);
+  // console.log(foodOrdersData);
   return (
     <Accordion defaultActiveKey="0">
       <Accordion.Item>
