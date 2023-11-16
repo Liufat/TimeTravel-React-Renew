@@ -2,21 +2,40 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { LINE_PAY_API } from './../../../../config';
+import { LINE_PAY_API, ECPAY_API } from './../../../../config';
 
 function RePay({ onHide, show, type, uuid }) {
   const [payMethod, setPayMethod] = useState('');
   let payUrl;
-  const myLinePay = async () => {
-    await pay();
-    window.location = payUrl;
+  const myPay = async () => {
+    if (payMethod === 'LinePay') {
+      await linePay(uuid);
+      window.location = payUrl;
+    }
+    if (payMethod === 'Credit') {
+      await EcPay(uuid);
+    }
   };
-  async function pay() {
+  const linePay = async (uuid) => {
     const response = await axios.get(LINE_PAY_API(uuid));
     const url = response.data.payUrl;
     payUrl = url;
-    console.log(payUrl);
-  }
+    // console.log(payUrl);
+  };
+  const EcPay = async (uuid) => {
+    const response = (await axios.get(ECPAY_API(uuid))).data.htm;
+    if (response) {
+      document.open();
+      document.write(response);
+      document.close();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: '訂單成立失敗！',
+      });
+      window.location = 'http://localhost:3000/cart/fail';
+    }
+  };
   return (
     <Modal
       show={show}
@@ -78,11 +97,7 @@ function RePay({ onHide, show, type, uuid }) {
                   reverseButtons: true,
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    if (payMethod === 'LinePay') {
-                      myLinePay();
-                    } else if (payMethod === 'Credit') {
-                      return;
-                    }
+                    myPay();
                   } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
