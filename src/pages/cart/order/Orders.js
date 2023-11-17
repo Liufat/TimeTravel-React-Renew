@@ -11,17 +11,20 @@ function Orders() {
   const member_sid = JSON.parse(localStorage.getItem('auth')).sid;
   const [ordersData, setOrdersData] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+
   const stableGetOrders = useCallback(
     async function getOrders() {
       const response = await axios.get(ORDERS_API(member_sid));
       setOrdersData(response.data);
+      setLoading(false);
     },
     [member_sid]
   );
   useEffect(() => {
     stableGetOrders();
   }, [location, stableGetOrders]);
-  // console.log(ordersData);
+
   return (
     <div className="orders-total-wrap">
       <NavBar />
@@ -29,7 +32,11 @@ function Orders() {
         <div className="givePadding profile_padding d-flex">
           <SideBar />
           <div className="profile col-9">
-            <OrdersDetail ordersData={ordersData} memberSid={member_sid} />
+            <OrdersDetail
+              ordersData={ordersData}
+              memberSid={member_sid}
+              loading={loading}
+            />
           </div>
         </div>
       </div>

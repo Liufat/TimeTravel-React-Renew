@@ -4,7 +4,7 @@ import './OrdersDetails.scss';
 import OrdersCard from './components/OrdersCard';
 import OrdersHistory from './components/OrdersHistory';
 import OrdersUndone from './components/OrdersUndone';
-function OrdersDetail({ ordersData, memberSid }) {
+function OrdersDetail({ ordersData, memberSid, loading }) {
   // console.log(memberSid);
   const nowOrder = ordersData.filter((v, i) => {
     return (
@@ -24,24 +24,33 @@ function OrdersDetail({ ordersData, memberSid }) {
   // console.log(historyOrder);
   const [path, setPath] = useState('now');
   // console.log(ordersData);
+
+  const buildDom = (path) => {
+    switch (path) {
+      case 'now':
+        return (
+          <OrdersCard
+            ordersData={nowOrder}
+            memberSid={memberSid}
+            loading={loading}
+          />
+        );
+      case 'undone':
+        return <OrdersUndone ordersData={undoneOrder} memberSid={memberSid} />;
+
+      case 'history':
+        return (
+          <OrdersHistory ordersData={historyOrder} memberSid={memberSid} />
+        );
+      default:
+        return <div>讀取錯誤</div>;
+    }
+  };
   return (
     <div className="container">
       <OrdersTypesList path={path} setPath={setPath} />
-      {path === 'now' ? (
-        <OrdersCard ordersData={nowOrder} memberSid={memberSid} />
-      ) : (
-        ''
-      )}
-      {path === 'undone' ? (
-        <OrdersUndone ordersData={undoneOrder} memberSid={memberSid} />
-      ) : (
-        ''
-      )}
-      {path === 'history' ? (
-        <OrdersHistory ordersData={historyOrder} memberSid={memberSid} />
-      ) : (
-        ''
-      )}
+
+      {buildDom(path)}
     </div>
   );
 }

@@ -34,7 +34,7 @@ function Food() {
   //呈現顯示資料用
   const [foodProductDisplay, setFoodProductDisplay] = useState([]);
 
-  const { hotelSort,setHotelSort } = useHotelContext();
+  const { hotelSort, setHotelSort } = useHotelContext();
 
   async function getList() {
     const response = await axios.get(FOOD_LIST);
